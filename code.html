@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JACK DM — Creative Media. Digital Marketing. Web. Branding.</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#E50914',
+              redHover: '#B80710',
+              redDark: '#5E0408',
+              teal: '#00F2FE',
+              tealDark: '#0891B2',
+              charcoal: '#0A0A0C',
+              darker: '#050507',
+              card: '#121216',
+              cardBorder: '#23232C',
+              silver: '#94A3B8',
+              metallic: '#CBD5E1',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #070709;
+      color: #E2E8F0;
+      overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Ambient noise & grid overlays */
+    .bg-grid-pattern {
+      background-size: 44px 44px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    .glow-red {
+      box-shadow: 0 0 35px -5px rgba(229, 9, 20, 0.4);
+    }
+    .glow-teal {
+      box-shadow: 0 0 35px -5px rgba(0, 242, 254, 0.35);
+    }
+
+    /* Custom Glassmorphism */
+    .glass-nav {
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .glass-card {
+      background: rgba(18, 18, 22, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .glass-card:hover {
+      border-color: rgba(229, 9, 20, 0.45);
+    }
+
+    /* Red gradient text */
+    .text-gradient-red {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 45%, #E50914 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-teal {
+      background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Interactive tab transition */
+    .filter-btn.active {
+      background: #E50914;
+      color: #FFFFFF;
+      box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+      border-color: #E50914;
+    }
+
+    /* Shimmer effect */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(1.08); }
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-red selection:text-white relative">
+
+  <!-- BACKGROUND AMBIENT GLOWS -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-brand-red/15 rounded-full blur-[140px] animate-pulse-glow"></div>
+    <div class="absolute top-[35%] -right-40 w-[550px] h-[550px] bg-brand-teal/10 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-20 left-1/3 w-[650px] h-[650px] bg-brand-redDark/20 rounded-full blur-[160px]"></div>
+    <div class="absolute inset-0 bg-grid-pattern opacity-60"></div>
+  </div>
+
+  <!-- 1. NAVIGATION -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav border-b border-white/10" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-redDark flex items-center justify-center font-display font-extrabold text-white text-xl shadow-lg shadow-brand-red/30 group-hover:scale-105 transition-transform duration-300">
+          J
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-black tracking-wider text-xl text-white group-hover:text-brand-red transition-colors duration-300">
+            JACK <span class="text-brand-red">DM</span>
+          </span>
+          <span class="text-[9px] uppercase tracking-widest text-brand-silver font-semibold -mt-1">
+            Creative &bull; Digital
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#hero" class="hover:text-brand-red transition-colors duration-200 py-1">Home</a>
+        <a href="#services" class="hover:text-brand-red transition-colors duration-200 py-1">Services</a>
+        <a href="#numbers" class="hover:text-brand-red transition-colors duration-200 py-1">Numbers</a>
+        <a href="#portfolio" class="hover:text-brand-red transition-colors duration-200 py-1">Portfolio</a>
+        <a href="#about" class="hover:text-brand-red transition-colors duration-200 py-1">About</a>
+        <a href="#approach" class="hover:text-brand-red transition-colors duration-200 py-1">Approach</a>
+        <a href="#contact" class="hover:text-brand-red transition-colors duration-200 py-1">Contact</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="#contact" class="relative group overflow-hidden rounded-full p-[1px] focus:outline-none">
+          <span class="absolute inset-0 bg-gradient-to-r from-brand-red via-brand-teal to-brand-red bg-[length:200%_auto] animate-gradient"></span>
+          <span class="relative px-6 py-2.5 rounded-full bg-brand-charcoal text-white text-sm font-semibold tracking-wide flex items-center gap-2 group-hover:bg-brand-red transition-all duration-300">
+            <span>Let’s Work Together</span>
+            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden text-slate-300 hover:text-white focus:outline-none text-2xl">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="hidden md:hidden bg-brand-card/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 transition-all duration-300">
+      <div class="flex flex-col gap-4 text-base font-medium">
+        <a href="#hero" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2 border-b border-white/5">Home</a>
+        <a href="#services" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2 border-b border-white/5">Services</a>
+        <a href="#numbers" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2 border-b border-white/5">Numbers</a>
+        <a href="#portfolio" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2 border-b border-white/5">Portfolio</a>
+        <a href="#about" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2 border-b border-white/5">About</a>
+        <a href="#approach" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2 border-b border-white/5">Approach</a>
+        <a href="#contact" class="mobile-nav-link text-slate-200 hover:text-brand-red py-2">Contact</a>
+        <a href="#contact" class="mobile-nav-link mt-2 text-center py-3 bg-brand-red hover:bg-brand-redHover rounded-xl text-white font-semibold shadow-lg shadow-brand-red/30">
+          Let’s Work Together
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. HERO SECTION -->
+  <section id="hero" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center z-10">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 flex flex-col justify-center space-y-8 text-center lg:text-left">
+          
+          <!-- Agency Badge / Tagline -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-card border border-white/10 self-center lg:self-start">
+            <span class="w-2 h-2 rounded-full bg-brand-teal animate-ping"></span>
+            <span class="w-2 h-2 rounded-full bg-brand-teal -ml-4"></span>
+            <span class="text-xs uppercase tracking-widest font-bold text-brand-silver">
+              JACK DM Agency &bull; <span class="text-brand-teal">Create. Build. Grow.</span>
+            </span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="font-display font-extrabold text-4xl sm:text-6xl xl:text-7xl leading-[1.08] tracking-tight text-white">
+            Creative Media. <br>
+            <span class="text-gradient-red">Digital Marketing.</span><br>
+            <span class="relative inline-block">
+              Web. Branding.
+              <svg class="absolute -bottom-2 left-0 w-full h-3 text-brand-teal/70" viewBox="0 0 250 12" fill="none">
+                <path d="M2 9.5C65 2.5 185 2 248 9.5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h1>
+
+          <!-- Supporting Text -->
+          <p class="text-lg sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
+            JACK DM helps ambitious businesses, high-growth brands, creators, and individuals architect their digital footprint through high-impact creative media, performance marketing, iconic branding, and custom digital experiences.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-brand-red hover:bg-brand-redHover text-white font-semibold rounded-xl text-center shadow-lg shadow-brand-red/35 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-3">
+              <span>Explore Our Work</span>
+              <i class="fa-solid fa-arrow-down-long text-sm"></i>
+            </a>
+            <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-brand-card hover:bg-white/10 text-white font-semibold rounded-xl border border-white/15 text-center transition-all duration-300 hover:border-brand-teal flex items-center justify-center gap-3">
+              <span>Let’s Work Together</span>
+              <i class="fa-solid fa-paper-plane text-brand-teal text-sm"></i>
+            </a>
+          </div>
+
+          <!-- Value highlights bar -->
+          <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
+            <div>
+              <div class="text-xs text-brand-silver font-medium">Domain</div>
+              <div class="text-sm font-bold text-white mt-0.5">Full-Service Studio</div>
+            </div>
+            <div>
+              <div class="text-xs text-brand-silver font-medium">Execution</div>
+              <div class="text-sm font-bold text-brand-teal mt-0.5">High Performance</div>
+            </div>
+            <div>
+              <div class="text-xs text-brand-silver font-medium">Standard</div>
+              <div class="text-sm font-bold text-brand-red mt-0.5">Global Craft</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Cinematic Creative Visual Artpiece (Original Creative Representation) -->
+        <div class="lg:col-span-5 relative flex items-center justify-center">
+          <!-- Geometric Hologram / Cinematic Graphic Container -->
+          <div class="relative w-full max-w-lg aspect-square rounded-3xl p-1 bg-gradient-to-tr from-brand-red via-brand-cardBorder to-brand-teal/60 shadow-2xl">
+            <div class="w-full h-full rounded-[22px] bg-brand-charcoal overflow-hidden relative flex flex-col justify-between p-8 border border-white/10">
+              
+              <!-- Abstract dynamic vector mesh background representing media/web/data -->
+              <svg class="absolute inset-0 w-full h-full opacity-25" viewBox="0 0 500 500" fill="none">
+                <circle cx="250" cy="250" r="210" stroke="#E50914" stroke-width="1.5" stroke-dasharray="8 6"/>
+                <circle cx="250" cy="250" r="160" stroke="#00F2FE" stroke-width="1" stroke-dasharray="4 8"/>
+                <circle cx="250" cy="250" r="100" stroke="#94A3B8" stroke-width="1.5"/>
+                <path d="M50 250 L450 250" stroke="#E50914" stroke-width="1" stroke-opacity="0.3"/>
+                <path d="M250 50 L250 450" stroke="#00F2FE" stroke-width="1" stroke-opacity="0.3"/>
+                <path d="M110 110 L390 390" stroke="#E50914" stroke-width="1" stroke-dasharray="5 5" stroke-opacity="0.2"/>
+              </svg>
+
+              <!-- Top UI badge -->
+              <div class="relative z-10 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-brand-red animate-pulse"></span>
+                  <span class="text-xs font-mono uppercase tracking-wider text-slate-300">JACK_DM // REEL.CORE</span>
+                </div>
+                <div class="px-3 py-1 rounded bg-black/60 border border-brand-teal/40 text-[10px] text-brand-teal font-mono">
+                  4K • HDR • ULTRA
+                </div>
+              </div>
+
+              <!-- Center Holographic Agency Prism Mark -->
+              <div class="relative z-10 my-auto text-center flex flex-col items-center">
+                <div class="relative w-36 h-36 flex items-center justify-center mb-4">
+                  <!-- Outer orbiting ring -->
+                  <div class="absolute inset-0 rounded-full border-2 border-brand-red/40 border-t-brand-teal animate-spin" style="animation-duration: 12s;"></div>
+                  <div class="absolute inset-3 rounded-2xl bg-gradient-to-br from-brand-red/30 to-brand-teal/20 backdrop-blur-md border border-white/20 flex items-center justify-center transform rotate-12 transition-transform hover:rotate-0 duration-500">
+                    <div class="w-16 h-16 rounded-xl bg-black/80 flex items-center justify-center border border-brand-red/50 shadow-inner">
+                      <span class="font-display font-black text-3xl text-gradient-red">DM</span>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="font-display font-bold text-2xl text-white tracking-wide">MULTIDISCIPLINARY</h3>
+                <p class="text-xs text-brand-silver mt-1 uppercase tracking-widest">Creative &bull; Code &bull; Marketing</p>
+              </div>
+
+              <!-- Bottom Floating Metrics Cards -->
+              <div class="relative z-10 grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+                <div class="bg-black/50 p-3 rounded-xl border border-white/5">
+                  <div class="text-[11px] text-brand-silver">Creative Precision</div>
+                  <div class="text-base font-bold text-brand-red flex items-center gap-1.5 mt-0.5">
+                    <i class="fa-solid fa-bezier-curve text-xs"></i> 99.8% Output
+                  </div>
+                </div>
+                <div class="bg-black/50 p-3 rounded-xl border border-white/5">
+                  <div class="text-[11px] text-brand-silver">Campaign Scalability</div>
+                  <div class="text-base font-bold text-brand-teal flex items-center gap-1.5 mt-0.5">
+                    <i class="fa-solid fa-chart-line text-xs"></i> 10x ROI Goal
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Ambient decorative pill elements floating outside -->
+          <div class="absolute -bottom-6 -left-6 bg-brand-card/90 backdrop-blur-md border border-brand-red/40 px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center font-bold">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-white">Full-Spectrum Agency</div>
+              <div class="text-[10px] text-brand-silver">Zero Compromises</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICES SECTION -->
+  <section id="services" class="py-28 relative z-10 border-t border-white/5 bg-brand-darker/60">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold uppercase tracking-widest mb-4">
+          Core Capabilities
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
+          Comprehensive Services. <br>
+          <span class="text-gradient-red">Balanced Representation.</span>
+        </h2>
+        <p class="text-slate-400 mt-4 text-base sm:text-lg">
+          JACK DM delivers equal visual importance and executive rigor across every pillar: media production, campaign acquisition, bespoke branding, social dominance, high-speed web code, and data intelligence.
+        </p>
+      </div>
+
+      <!-- Services Grid: 6 Pillars with equal weight -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1: CREATIVE MEDIA -->
+        <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden group">
+          <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:bg-brand-red group-hover:text-white transition-all duration-300">
+            <i class="fa-solid fa-film"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-red">Pillar 01</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-1 mb-3">CREATIVE MEDIA</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Cinematic storytelling, dynamic video production, and high-fidelity captures designed to stop thumbs and evoke genuine emotion.
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-300 border-t border-white/10 pt-5">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Videography &amp; Event Shoots</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Professional Photography</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Reels Production &amp; Reel Series</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Video Editing &amp; Color Grading</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Promotional Brand Videos</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> YouTube Content &amp; Short Films</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: DIGITAL MARKETING -->
+        <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden group">
+          <div class="w-14 h-14 rounded-xl bg-brand-teal/10 border border-brand-teal/30 flex items-center justify-center text-brand-teal text-2xl mb-6 group-hover:bg-brand-teal group-hover:text-brand-charcoal transition-all duration-300">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-teal">Pillar 02</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-1 mb-3">DIGITAL MARKETING</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Data-backed performance acquisition strategies engineered to turn impressions into loyal customers and revenue.
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-300 border-t border-white/10 pt-5">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Social Media Marketing (SMM)</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Multi-Platform Digital Campaigns</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Search Engine Optimization (SEO)</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Online Growth Strategy &amp; Funnels</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Performance &amp; Campaign Analysis</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Targeted Audience Retargeting</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3: BRANDING & VISUAL IDENTITY -->
+        <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden group">
+          <div class="w-14 h-14 rounded-xl bg-slate-800 border border-brand-silver/30 flex items-center justify-center text-brand-metallic text-2xl mb-6 group-hover:bg-brand-metallic group-hover:text-black transition-all duration-300">
+            <i class="fa-solid fa-shapes"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-silver">Pillar 03</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-1 mb-3">BRANDING &amp; IDENTITY</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Memorable visual systems, distinct design languages, and positioning guidelines that command market authority.
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-300 border-t border-white/10 pt-5">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Distinctive Logo Design &amp; Marks</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Full Brand Identity Systems</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Brand Positioning Strategy</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Enterprise Rebranding Solutions</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Creative Brand Assets &amp; Guidelines</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Visual Communication Architecture</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 4: SOCIAL MEDIA & CONTENT -->
+        <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden group">
+          <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:bg-brand-red group-hover:text-white transition-all duration-300">
+            <i class="fa-solid fa-hashtag"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-red">Pillar 04</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-1 mb-3">SOCIAL &amp; CONTENT</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Turn passive scrollers into community advocates with daily relevance, trend agility, and viral-calibrated formats.
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-300 border-t border-white/10 pt-5">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Full Social Media Management</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Content Strategy &amp; Editorial Calendars</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Instagram Reels &amp; TikTok Mastery</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Short-form Viral Video Content</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Community Management &amp; Engagement</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-red text-xs"></i> Creator &amp; Influencer Collaborations</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 5: WEB & DIGITAL -->
+        <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden group">
+          <div class="w-14 h-14 rounded-xl bg-brand-teal/10 border border-brand-teal/30 flex items-center justify-center text-brand-teal text-2xl mb-6 group-hover:bg-brand-teal group-hover:text-brand-charcoal transition-all duration-300">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-teal">Pillar 05</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-1 mb-3">WEB &amp; DIGITAL</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Blazing-fast responsive websites, custom web applications, and landing pages designed for high conversion.
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-300 border-t border-white/10 pt-5">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Modern Website UI/UX Design</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> High-Conversion Landing Pages</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> E-commerce Store Development</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Responsive Frontend Engineering</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Website Maintenance &amp; Security</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-teal text-xs"></i> Core Web Vitals Optimization</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 6: DATA & DIGITAL PRESENCE -->
+        <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden group">
+          <div class="w-14 h-14 rounded-xl bg-slate-800 border border-brand-silver/30 flex items-center justify-center text-brand-metallic text-2xl mb-6 group-hover:bg-brand-metallic group-hover:text-black transition-all duration-300">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-silver">Pillar 06</span>
+          <h3 class="font-display font-bold text-2xl text-white mt-1 mb-3">DATA &amp; PRESENCE</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            Uncovering user behavior insights, managing search reputational footprint, and auditing multichannel performance.
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-300 border-t border-white/10 pt-5">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Deep Data Analytics &amp; Tagging</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Digital Performance Tracking</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Brand Reputation Management</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Multichannel Online Presence Audit</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Campaign Performance Synthesis</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-metallic text-xs"></i> Executive Monthly Reporting</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. EXPERIENCE / NUMBERS SECTION -->
+  <section id="numbers" class="py-24 relative z-10 bg-brand-charcoal border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Proven Track Record Narrative -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-bold uppercase tracking-widest">
+            Track Record
+          </div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">
+            Numbers That Validate Our Standards.
+          </h2>
+          <p class="text-slate-400 text-base leading-relaxed">
+            At JACK DM, impact is backed by consistency. Over years of collaborative production with creators, enterprises, and event leaders, we have delivered across every high-stakes format.
+          </p>
+
+          <!-- Badges for special formats -->
+          <div class="pt-2">
+            <div class="text-xs uppercase font-bold tracking-wider text-brand-silver mb-3">Extensive Experience Across:</div>
+            <div class="flex flex-wrap gap-2.5">
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
+                <i class="fa-solid fa-clapperboard text-brand-red mr-1.5"></i> Short Films
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
+                <i class="fa-solid fa-mobile-screen text-brand-teal mr-1.5"></i> Reel Series
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
+                <i class="fa-solid fa-champagne-glasses text-brand-red mr-1.5"></i> Event Videos
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
+                <i class="fa-solid fa-user-astronaut text-brand-silver mr-1.5"></i> Creator Content
+              </span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
+                <i class="fa-solid fa-video text-brand-teal mr-1.5"></i> Promotional Videos
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 4 Prominent Stat Cards -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          <div class="glass-card rounded-2xl p-8 border-l-4 border-l-brand-red relative overflow-hidden">
+            <div class="font-display font-extrabold text-5xl text-white tracking-tight">4+</div>
+            <div class="text-lg font-bold text-slate-200 mt-2">Years Experience</div>
+            <p class="text-xs text-brand-silver mt-1">Dedicated craft, multi-industry agency service &amp; reliable execution.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 border-l-4 border-l-brand-teal relative overflow-hidden">
+            <div class="font-display font-extrabold text-5xl text-white tracking-tight">45+</div>
+            <div class="text-lg font-bold text-slate-200 mt-2">Video Editing Projects</div>
+            <p class="text-xs text-brand-silver mt-1">High-retention commercial cuts, YouTube content, and reels.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 border-l-4 border-l-brand-red relative overflow-hidden">
+            <div class="font-display font-extrabold text-5xl text-white tracking-tight">8–12</div>
+            <div class="text-lg font-bold text-slate-200 mt-2">Event Projects</div>
+            <p class="text-xs text-brand-silver mt-1">Full coverage: Automotive showrooms, galas, and milestones.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 border-l-4 border-l-brand-silver relative overflow-hidden">
+            <div class="font-display font-extrabold text-5xl text-white tracking-tight">6</div>
+            <div class="text-lg font-bold text-slate-200 mt-2">YouTube Projects</div>
+            <p class="text-xs text-brand-silver mt-1">End-to-end channel strategy, thumbnail curation, &amp; series development.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PORTFOLIO SECTION -->
+  <section id="portfolio" class="py-28 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Section Title & Filters -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold uppercase tracking-widest mb-3">
+            Selected Works
+          </div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
+            Curated Portfolio
+          </h2>
+          <p class="text-slate-400 mt-2 text-base max-w-xl">
+            Explore recent projects spanning narrative films, commercial reels, events, brand architecture, and web platforms.
+          </p>
+        </div>
+
+        <!-- Filter Buttons (ALL, VIDEO, PHOTOGRAPHY, SOCIAL MEDIA, BRANDING, DIGITAL MARKETING, WEB) -->
+        <div class="flex flex-wrap gap-2 text-xs font-semibold" id="portfolioFilterBar">
+          <button class="filter-btn active px-4 py-2 rounded-lg border border-white/10 transition-all duration-200" data-filter="all">ALL</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-brand-red transition-all duration-200" data-filter="video">VIDEO</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-brand-red transition-all duration-200" data-filter="photography">PHOTOGRAPHY</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-brand-red transition-all duration-200" data-filter="social">SOCIAL MEDIA</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-brand-red transition-all duration-200" data-filter="branding">BRANDING</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-brand-red transition-all duration-200" data-filter="marketing">DIGITAL MARKETING</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-brand-red transition-all duration-200" data-filter="web">WEB</button>
+        </div>
+      </div>
+
+      <!-- Portfolio Items Grid with Replaceable Clean Media Placeholders -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+
+        <!-- 1. Short Film -->
+        <div class="portfolio-item group" data-category="video">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <!-- Media Container Placeholder -->
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <!-- Geometric Cinematic Artwork Placeholder -->
+              <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#E50914_1px,transparent_1px)] [background-size:16px_16px]"></div>
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-red/20 text-brand-red border border-brand-red/40 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-play text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Short Film</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-red uppercase tracking-wider">
+                Video
+              </div>
+            </div>
+            <!-- Card Meta -->
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-red transition-colors">"Echoes of Tomorrow"</h3>
+              <p class="text-slate-400 text-sm mt-1">Cinematic 14-minute narrative short film with custom score &amp; HDR color grade.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Format: 4K Narrative</span>
+                <span class="text-brand-teal font-semibold">Short Film &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Reel Series -->
+        <div class="portfolio-item group" data-category="social video">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="absolute inset-0 opacity-30 bg-gradient-to-r from-brand-red/20 to-brand-teal/20"></div>
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-teal/20 text-brand-teal border border-brand-teal/40 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-bolt text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Reel Series</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-teal uppercase tracking-wider">
+                Social Media
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-teal transition-colors">Urban Pulse Reel Series</h3>
+              <p class="text-slate-400 text-sm mt-1">12-part high-retention vertical reels campaign yielding 2.8M organic views.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Engagement: +340%</span>
+                <span class="text-brand-teal font-semibold">Reel Series &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Car Showroom Event -->
+        <div class="portfolio-item group" data-category="video photography">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="absolute inset-0 opacity-40 bg-[linear-gradient(45deg,#23232C_25%,transparent_25%),linear-gradient(-45deg,#23232C_25%,transparent_25%)] [background-size:20px_20px]"></div>
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-white/10 text-white border border-white/30 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-car text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Event</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-metallic uppercase tracking-wider">
+                Event Project
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-red transition-colors">Apex Luxury Car Showroom</h3>
+              <p class="text-slate-400 text-sm mt-1">Multi-camera VIP launch coverage, recap teasers, and hyper-stylized photography.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Type: Commercial Event</span>
+                <span class="text-brand-red font-semibold">Car Showroom &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Birthday Event -->
+        <div class="portfolio-item group" data-category="photography video">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-red/20 text-brand-red border border-brand-red/30 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-camera-retro text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Milestone</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                Photography
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-red transition-colors">Solstice Milestone Gala</h3>
+              <p class="text-slate-400 text-sm mt-1">Intimate lighting setup, candid guest portraits, and an emotional aftermovie.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Coverage: Photo &bull; Video</span>
+                <span class="text-brand-red font-semibold">Birthday Event &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. YouTube Video / Channel -->
+        <div class="portfolio-item group" data-category="video marketing">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-red-600/20 text-red-500 border border-red-500/40 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-brands fa-youtube text-xl"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // YouTube</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-red-500 uppercase tracking-wider">
+                YouTube Project
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-red transition-colors">Tech Unfiltered Channel Suite</h3>
+              <p class="text-slate-400 text-sm mt-1">Episodic editing, custom sound design, viral retention pacing, and CTR thumbnails.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Average Retention: 62%</span>
+                <span class="text-brand-red font-semibold">YouTube Video &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Promotional Video -->
+        <div class="portfolio-item group" data-category="video marketing">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-teal/20 text-brand-teal border border-brand-teal/30 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-bullseye text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Promo</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-teal uppercase tracking-wider">
+                Marketing Video
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-teal transition-colors">Verve Fitness Brand Anthem</h3>
+              <p class="text-slate-400 text-sm mt-1">High-tempo cinematic commercial video produced for multi-channel digital ad blitz.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Campaign: Conversion Ad</span>
+                <span class="text-brand-teal font-semibold">Promotional Video &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Brand Identity -->
+        <div class="portfolio-item group" data-category="branding">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-metallic/20 text-brand-metallic border border-brand-metallic/40 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-gem text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Identity</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-metallic uppercase tracking-wider">
+                Branding
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-silver transition-colors">Kinetix Apparel Identity</h3>
+              <p class="text-slate-400 text-sm mt-1">Complete brand identity guide, vector mark system, typography, and stationery.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Scope: Full Brand Book</span>
+                <span class="text-brand-metallic font-semibold">Brand Identity &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Social Media Content -->
+        <div class="portfolio-item group" data-category="social marketing">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-red/20 text-brand-red border border-brand-red/30 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-share-nodes text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Social Grid</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-red uppercase tracking-wider">
+                Social Media
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-red transition-colors">Lumina Roasters Social Engine</h3>
+              <p class="text-slate-400 text-sm mt-1">Daily Instagram content rollout, aesthetic carousel designs, and creator gifting.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Growth: +45K Followers</span>
+                <span class="text-brand-red font-semibold">Social Content &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Web Platform -->
+        <div class="portfolio-item group" data-category="web">
+          <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video bg-gradient-to-br from-zinc-900 via-neutral-900 to-black overflow-hidden flex items-center justify-center border-b border-white/10">
+              <div class="text-center p-6 relative z-10">
+                <div class="w-14 h-14 rounded-full bg-brand-teal/20 text-brand-teal border border-brand-teal/30 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-laptop-code text-lg"></i>
+                </div>
+                <span class="text-xs uppercase font-mono tracking-widest text-slate-400">Media Placeholder // Web</span>
+              </div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded text-[11px] font-bold text-brand-teal uppercase tracking-wider">
+                Web &amp; Digital
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-teal transition-colors">Nexus Fintech Experience</h3>
+              <p class="text-slate-400 text-sm mt-1">Next-gen high-converting web platform with sub-second page loads and interactive calculators.</p>
+              <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-brand-silver">
+                <span>Speed: 99 Google Vitals</span>
+                <span class="text-brand-teal font-semibold">Web Platform &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. ABOUT JACK DM -->
+  <section id="about" class="py-28 relative z-10 bg-brand-darker border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Agency Philosophy Statement -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold uppercase tracking-widest">
+            About The Agency
+          </div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight">
+            Your Creative &amp; <br>
+            <span class="text-gradient-red">Digital Growth Partner</span>
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            JACK DM was founded on a simple realization: modern audiences don't view media, marketing, and technology as separate silos—they experience your brand as a singular whole.
+          </p>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            By uniting <strong>Creative Media + Digital Marketing + Branding + Social Media + Digital Solutions</strong> under one unified roof, we eliminate handoff friction. Our client-focused model pairs strategic thinking with relentless execution, helping you captivate attention and monetize market presence.
+          </p>
+
+          <!-- Core Value Props Matrix -->
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 rounded-xl glass-card">
+              <div class="text-brand-red text-lg mb-1"><i class="fa-solid fa-cubes"></i></div>
+              <div class="font-bold text-white text-sm">Unified Multidisciplinary</div>
+              <div class="text-xs text-slate-400 mt-1">One accountable partner from first brainstorm to post-launch optimization.</div>
+            </div>
+            <div class="p-4 rounded-xl glass-card">
+              <div class="text-brand-teal text-lg mb-1"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="font-bold text-white text-sm">Outcome-Obsessed</div>
+              <div class="text-xs text-slate-400 mt-1">Every edit, line of code, and ad spend is engineered for tangible ROI.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Modern Visual Feature Panel -->
+        <div class="lg:col-span-6">
+          <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/10 relative overflow-hidden">
+            <div class="absolute -right-20 -bottom-20 w-60 h-60 bg-brand-red/10 rounded-full blur-3xl"></div>
+
+            <h3 class="font-display font-bold text-2xl text-white mb-6 flex items-center gap-3">
+              <span class="w-2.5 h-6 bg-brand-red rounded-full"></span>
+              The Five Integrated Disciplines
+            </h3>
+
+            <div class="space-y-4">
+              <!-- Item 1 -->
+              <div class="flex items-start gap-4 p-3.5 rounded-xl bg-black/40 border border-white/5 hover:border-brand-red/40 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0 font-bold">1</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Creative Media</div>
+                  <div class="text-xs text-slate-400">High-definition storytelling, cinematography, and retention-first edits.</div>
+                </div>
+              </div>
+              <!-- Item 2 -->
+              <div class="flex items-start gap-4 p-3.5 rounded-xl bg-black/40 border border-white/5 hover:border-brand-teal/40 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-brand-teal/10 text-brand-teal flex items-center justify-center shrink-0 font-bold">2</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Digital Marketing</div>
+                  <div class="text-xs text-slate-400">Paid acquisition, search positioning, and multi-touch digital funnels.</div>
+                </div>
+              </div>
+              <!-- Item 3 -->
+              <div class="flex items-start gap-4 p-3.5 rounded-xl bg-black/40 border border-white/5 hover:border-brand-silver/40 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-slate-800 text-brand-silver flex items-center justify-center shrink-0 font-bold">3</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Branding &amp; Visual Identity</div>
+                  <div class="text-xs text-slate-400">Design systems, logo marks, brand voice, and distinctive visual guidelines.</div>
+                </div>
+              </div>
+              <!-- Item 4 -->
+              <div class="flex items-start gap-4 p-3.5 rounded-xl bg-black/40 border border-white/5 hover:border-brand-red/40 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0 font-bold">4</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Social Media &amp; Content</div>
+                  <div class="text-xs text-slate-400">Viral reels, community building, creator networks, and scheduled distribution.</div>
+                </div>
+              </div>
+              <!-- Item 5 -->
+              <div class="flex items-start gap-4 p-3.5 rounded-xl bg-black/40 border border-white/5 hover:border-brand-teal/40 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-brand-teal/10 text-brand-teal flex items-center justify-center shrink-0 font-bold">5</div>
+                <div>
+                  <div class="text-sm font-bold text-white">Digital Solutions &amp; Web</div>
+                  <div class="text-xs text-slate-400">Responsive web platforms, performance tracking, and reputation architecture.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. OUR APPROACH (CREATE. BUILD. GROW.) -->
+  <section id="approach" class="py-28 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-bold uppercase tracking-widest mb-3">
+          Methodology
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
+          Our Three-Phase Approach
+        </h2>
+        <p class="text-slate-400 mt-3 text-base">
+          A proven framework that converts creative vision into enduring commercial dominance.
+        </p>
+      </div>
+
+      <!-- 3 Visually Strong Pillar Cards: CREATE, BUILD, GROW -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- CREATE -->
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-brand-red transition-all duration-300">
+          <div class="text-8xl font-black font-display text-white/5 absolute top-2 right-4 pointer-events-none select-none">
+            01
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/10 border border-brand-red/40 flex items-center justify-center text-brand-red text-2xl mb-8 group-hover:bg-brand-red group-hover:text-white transition-colors">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-red">Phase One</span>
+          <h3 class="font-display font-extrabold text-3xl text-white mt-1 mb-4">CREATE</h3>
+          <p class="text-slate-300 text-base leading-relaxed mb-6">
+            Develop original ideas, captivating stories, unforgettable content, and unmistakable visual identities tailored to your audience's deepest triggers.
+          </p>
+          <div class="space-y-2 text-xs text-brand-silver">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-red text-[8px]"></i> Narrative Ideation &amp; Scripting</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-red text-[8px]"></i> Visual Concept &amp; Storyboarding</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-red text-[8px]"></i> Brand Voice &amp; Aesthetic DNA</div>
+          </div>
+        </div>
+
+        <!-- BUILD -->
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-brand-teal transition-all duration-300">
+          <div class="text-8xl font-black font-display text-white/5 absolute top-2 right-4 pointer-events-none select-none">
+            02
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-brand-teal/10 border border-brand-teal/40 flex items-center justify-center text-brand-teal text-2xl mb-8 group-hover:bg-brand-teal group-hover:text-brand-charcoal transition-colors">
+            <i class="fa-solid fa-hammer"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-teal">Phase Two</span>
+          <h3 class="font-display font-extrabold text-3xl text-white mt-1 mb-4">BUILD</h3>
+          <p class="text-slate-300 text-base leading-relaxed mb-6">
+            Turn conceptual sparks into bulletproof digital platforms, robust brand assets, and meaningful, tactile customer touchpoints that inspire trust.
+          </p>
+          <div class="space-y-2 text-xs text-brand-silver">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-teal text-[8px]"></i> High-Production Asset Production</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-teal text-[8px]"></i> Modern Web &amp; E-commerce Build</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-teal text-[8px]"></i> Technical Infrastructure Setup</div>
+          </div>
+        </div>
+
+        <!-- GROW -->
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-brand-silver transition-all duration-300">
+          <div class="text-8xl font-black font-display text-white/5 absolute top-2 right-4 pointer-events-none select-none">
+            03
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-slate-800 border border-brand-silver/30 flex items-center justify-center text-brand-metallic text-2xl mb-8 group-hover:bg-brand-metallic group-hover:text-black transition-colors">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-silver">Phase Three</span>
+          <h3 class="font-display font-extrabold text-3xl text-white mt-1 mb-4">GROW</h3>
+          <p class="text-slate-300 text-base leading-relaxed mb-6">
+            Leverage targeted performance marketing, viral social distribution, intelligent data analytics, and continuous iteration to build compounding digital growth.
+          </p>
+          <div class="space-y-2 text-xs text-brand-silver">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-metallic text-[8px]"></i> Paid Scaling &amp; Conversion Funnels</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-metallic text-[8px]"></i> Social Engagement &amp; Retention</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-metallic text-[8px]"></i> Long-Term Organic Authority</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. WHY JACK DM -->
+  <section class="py-28 relative z-10 bg-brand-charcoal border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold uppercase tracking-widest mb-3">
+          Agency Advantage
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
+          Why Partner With JACK DM
+        </h2>
+        <p class="text-slate-400 mt-3 text-base">
+          Built from the ground up for speed, creative bravery, and commercial integrity.
+        </p>
+      </div>
+
+      <!-- 6 Key Points Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="glass-card rounded-2xl p-7 border border-white/5 hover:border-brand-red/40 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">Creative Excellence</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            We don't settle for generic templates. Every visual, hook, frame, and color grade is crafted to outshine standard market noise.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/5 hover:border-brand-teal/40 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">Client Focused</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Your goals become our roadmap. Transparent communication, transparent milestones, and proactive strategic recommendations.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/5 hover:border-brand-silver/40 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-slate-800 text-brand-silver flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">End-to-End Services</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            From pre-production concepts to production, coding, ad rollouts, and ongoing data audits—everything connects seamlessly.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/5 hover:border-brand-red/40 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">Modern &amp; Digital First</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Engineered natively for the social and digital era. We understand the algorithms, behavioral triggers, and fast visual rhythms that win today.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/5 hover:border-brand-teal/40 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-chess"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">Strategic Thinking</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Creativity without strategy is just art. We align all creative choices directly with customer acquisition, retention, and enterprise valuation.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/5 hover:border-brand-silver/40 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-slate-800 text-brand-silver flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">Quality &amp; Professional Execution</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Strict quality assurance protocols across color calibration, audio clarity, clean code standards, and rock-solid campaign deployment.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. CONTACT / CTA SECTION -->
+  <section id="contact" class="py-28 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Contact Context -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold uppercase tracking-widest">
+            Let’s Connect
+          </div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight">
+            Have a project in mind? <br>
+            <span class="text-gradient-red">Let’s talk.</span>
+          </h2>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Whether you need a full creative campaign, a revamped brand system, a high-converting website, or a scalable video content engine, JACK DM is ready to accelerate your growth.
+          </p>
+
+          <div class="pt-4 space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-red">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <div class="text-xs text-brand-silver">Direct Inquiries</div>
+                <div class="text-sm font-semibold text-white">hello@jackdm.com</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-teal">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <div class="text-xs text-brand-silver">Direct Line</div>
+                <div class="text-sm font-semibold text-white">+1 (800) 522-5360</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-silver">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <div class="text-xs text-brand-silver">Studio Location</div>
+                <div class="text-sm font-semibold text-white">Global Remote &amp; On-Location Shoots</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="pt-4 flex flex-wrap gap-3">
+            <a href="#contactForm" class="px-5 py-2.5 bg-brand-red hover:bg-brand-redHover rounded-lg text-white font-semibold text-sm transition-colors shadow-lg shadow-brand-red/30">
+              Start a Project
+            </a>
+            <a href="mailto:hello@jackdm.com" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white font-semibold text-sm transition-colors">
+              Contact JACK DM
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/10 shadow-2xl relative">
+            <h3 class="font-display font-bold text-2xl text-white mb-2">Project Brief</h3>
+            <p class="text-slate-400 text-sm mb-8">Fill in your requirements below and our lead director will respond within 24 hours.</p>
+
+            <form id="contactForm" onsubmit="event.preventDefault(); document.getElementById('formSuccessMsg').classList.remove('hidden'); this.reset();" class="space-y-6">
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Name -->
+                <div>
+                  <label for="name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Name *</label>
+                  <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-red transition-colors text-sm">
+                </div>
+                <!-- Email -->
+                <div>
+                  <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
+                  <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-red transition-colors text-sm">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Phone -->
+                <div>
+                  <label for="phone" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
+                  <input type="tel" id="phone" placeholder="+1 (555) 000-0000" class="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-red transition-colors text-sm">
+                </div>
+                <!-- Service Required -->
+                <div>
+                  <label for="service" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Service Required *</label>
+                  <select id="service" required class="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-brand-teal transition-colors text-sm">
+                    <option value="" disabled selected class="bg-brand-charcoal text-slate-400">Select a primary service...</option>
+                    <option value="Creative Media & Video" class="bg-brand-charcoal">Creative Media &amp; Video Production</option>
+                    <option value="Digital Marketing & Growth" class="bg-brand-charcoal">Digital Marketing &amp; SEO Strategy</option>
+                    <option value="Branding & Visual Identity" class="bg-brand-charcoal">Branding &amp; Visual Identity</option>
+                    <option value="Social Media & Content" class="bg-brand-charcoal">Social Media &amp; Reels Content</option>
+                    <option value="Website & Web Development" class="bg-brand-charcoal">Website Design &amp; Development</option>
+                    <option value="Data & Online Presence" class="bg-brand-charcoal">Data Analytics &amp; Online Presence</option>
+                    <option value="Full Integrated Package" class="bg-brand-charcoal">Full Integrated Agency Package</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Project Details -->
+              <div>
+                <label for="details" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Project Details *</label>
+                <textarea id="details" rows="4" required placeholder="Tell us about your brand, goals, target timeline, and budget..." class="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-red transition-colors text-sm resize-none"></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="w-full py-4 bg-gradient-to-r from-brand-red via-brand-red to-brand-redDark hover:brightness-110 text-white font-bold rounded-xl shadow-xl shadow-brand-red/30 transition-all duration-300 text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                <span>Submit Project Inquiry</span>
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+
+              <!-- Success Alert -->
+              <div id="formSuccessMsg" class="hidden p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-sm text-center">
+                <i class="fa-solid fa-circle-check mr-2"></i> Thank you! Your brief has been received. A JACK DM director will contact you promptly.
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. FOOTER -->
+  <footer class="bg-black border-t border-white/10 pt-16 pb-12 relative z-10 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Top Row: Brand & Links -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-brand-red flex items-center justify-center font-display font-black text-white text-lg">
+              J
+            </div>
+            <span class="font-display font-black tracking-wider text-xl text-white">
+              JACK <span class="text-brand-red">DM</span>
+            </span>
+          </div>
+          <p class="text-slate-300 font-medium">
+            “Creative Media &bull; Digital Marketing &bull; Web &bull; Branding”
+          </p>
+          <p class="text-xs text-slate-500 leading-relaxed max-w-sm">
+            Positioned as your complete creative + digital partner. We help brands, creators, and businesses build presence, attract loyalty, and compound valuation.
+          </p>
+          <!-- Social Icons -->
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-red hover:text-white flex items-center justify-center transition-colors text-slate-300">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-red hover:text-white flex items-center justify-center transition-colors text-slate-300">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-teal hover:text-black flex items-center justify-center transition-colors text-slate-300">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="#" aria-label="X / Twitter" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white hover:text-black flex items-center justify-center transition-colors text-slate-300">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-brand-red hover:text-white flex items-center justify-center transition-colors text-slate-300">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Navigation Links -->
+        <div class="lg:col-span-3 space-y-3">
+          <div class="text-xs uppercase font-bold tracking-widest text-white">Navigation</div>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#hero" class="hover:text-brand-red transition-colors">Home</a></li>
+            <li><a href="#services" class="hover:text-brand-red transition-colors">Services</a></li>
+            <li><a href="#numbers" class="hover:text-brand-red transition-colors">Experience &amp; Numbers</a></li>
+            <li><a href="#portfolio" class="hover:text-brand-red transition-colors">Portfolio</a></li>
+            <li><a href="#about" class="hover:text-brand-red transition-colors">About JACK DM</a></li>
+            <li><a href="#approach" class="hover:text-brand-red transition-colors">Our Approach (Create. Build. Grow.)</a></li>
+            <li><a href="#contact" class="hover:text-brand-red transition-colors">Contact Form</a></li>
+          </ul>
+        </div>
+
+        <!-- Capabilities Quick List -->
+        <div class="lg:col-span-4 space-y-3">
+          <div class="text-xs uppercase font-bold tracking-widest text-white">Capabilities</div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <span class="text-slate-400">Short Films &amp; Reels</span>
+            <span class="text-slate-400">Paid Ad Campaigns</span>
+            <span class="text-slate-400">Event Video Shoots</span>
+            <span class="text-slate-400">SEO &amp; Growth</span>
+            <span class="text-slate-400">Brand Identity &amp; Logos</span>
+            <span class="text-slate-400">Web Development</span>
+            <span class="text-slate-400">YouTube Channel Ops</span>
+            <span class="text-slate-400">Data Analytics</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: Copyright & Legal -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div>
+          &copy; <span id="currentYear"></span> JACK DM. All rights reserved. “Create. Build. Grow.”
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-300 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-slate-300 transition-colors">Client Portal</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR DYNAMIC FUNCTIONALITY (Portfolio Filter, Smooth Nav, Mobile Menu) -->
+  <script>
+    // Auto-update footer copyright year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+      });
+    });
+
+    // Header scroll background styling enhancement
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 40) {
+        header.classList.add('shadow-2xl', 'bg-black/90');
+      } else {
+        header.classList.remove('shadow-2xl', 'bg-black/90');
+      }
+    });
+
+    // Portfolio Category Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Toggle active button style
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        portfolioCards.forEach(card => {
+          const categoryString = card.getAttribute('data-category');
+          if (filterValue === 'all' || categoryString.includes(filterValue)) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
